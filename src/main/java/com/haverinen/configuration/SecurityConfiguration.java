@@ -60,6 +60,7 @@ public class SecurityConfiguration {
             http.csrf().disable();
             http.authorizeHttpRequests((requests) -> requests
                     .requestMatchers(mvcMatcherBuilder.pattern("/auth/**")).permitAll()
+                    .requestMatchers(mvcMatcherBuilder.pattern("/products/**")).permitAll()
                     .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).hasRole("ADMIN")
                     .requestMatchers(mvcMatcherBuilder.pattern("/user/**")).hasAnyRole("ADMIN", "USER")
                     .anyRequest().authenticated()
