@@ -20,9 +20,9 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public String addNewProduct(Product product) {
+    public String addNewProduct(List<Product> product) {
         try {
-            productRepository.save(product);
+            productRepository.saveAll(product);
         } catch (Exception e) {
             return "Adding your product failed";
         }

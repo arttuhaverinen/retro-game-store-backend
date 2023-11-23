@@ -28,10 +28,11 @@ public class ProductController {
         return "getProductsTest";
     }
     @PostMapping("/")
-        public String postProduct(@RequestBody Product product) {
+        public String postProduct(@RequestBody List<Product> product) {
             String result = productService.addNewProduct(product);
             return result;
         }
+
 
 
 
