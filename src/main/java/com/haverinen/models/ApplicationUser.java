@@ -5,7 +5,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -26,14 +28,28 @@ public class ApplicationUser implements UserDetails {
 
     private Set<Role> authorities;
 
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cp_fk", referencedColumnName = "user_id")
+    private List<Product> products;
+
+    @Column(name="products", nullable = true)
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     public ApplicationUser() {
     }
 
-    public ApplicationUser(Integer userId, String username, String password, Set<Role> authorities) {
+    public ApplicationUser(Integer userId, String username, String password, Set<Role> authorities, List<Product> products) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.authorities = authorities;
+        this.products = products;
     }
 
     public Integer getUserId() {

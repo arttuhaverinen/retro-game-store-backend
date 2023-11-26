@@ -28,16 +28,44 @@ public class Product {
     @Column(name="image", nullable = true)
     private String image;
 
+    @Column(name="console", nullable = true)
+    private String console;
+
+    @Column(name="application_user", nullable = true)
+    private String owner;
+
+    @Column(name="contact", nullable = false)
+    private String contact;
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
     public Product() {
     }
 
-    public Product(Integer id, String name, String description, Integer price, String location, String image, Date date) {
+    public Product(Integer id, String name, String description, Integer price, String location, String image, Date date, String console, String owner) {
         Id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.location = location;
         this.image = image;
+        this.console = console;
+        this.owner = owner;
+        this.contact = contact;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public Integer getId() {
@@ -86,6 +114,16 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getConsole() {
+        return console;
+    }
+
+
+
+    public void setConsole(String console) {
+        this.console = console;
     }
 
     /*

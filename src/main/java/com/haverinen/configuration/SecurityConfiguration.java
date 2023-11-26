@@ -59,11 +59,19 @@ public class SecurityConfiguration {
             MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
             http.csrf().disable();
             http.authorizeHttpRequests((requests) -> requests
+                    .requestMatchers(mvcMatcherBuilder.pattern("/")).permitAll()
+                    .requestMatchers(mvcMatcherBuilder.pattern("")).permitAll()
+                    .requestMatchers("/static/**").permitAll()
+                    .requestMatchers("/templates/**").permitAll()
                     .requestMatchers(mvcMatcherBuilder.pattern("/auth/**")).permitAll()
                     .requestMatchers(mvcMatcherBuilder.pattern("/products/**")).permitAll()
                     .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).hasRole("ADMIN")
-                    .requestMatchers(mvcMatcherBuilder.pattern("/user/**")).hasAnyRole("ADMIN", "USER")
-                    .anyRequest().authenticated()
+                    .requestMatchers(mvcMatcherBuilder.pattern("/addProduct/**")).hasRole("USER")
+                    .requestMatchers(mvcMatcherBuilder.pattern("/user/**")).permitAll()
+                    //.requestMatchers(mvcMatcherBuilder.pattern("/user/**")).hasAnyRole("ADMIN", "USER")
+                    //.anyRequest().authenticated()
+                    .anyRequest().permitAll() //
+
             );
             http.oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()));
             
