@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.c3af2218.css",
-    "main.js": "/static/js/main.50ceb4a4.js",
+    "main.js": "/static/js/main.0886fa32.js",
     "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
     "static/media/n64.png": "/static/media/n64.ce126b34307a55b2ceef.png",
     "static/media/Playstation_logo_colour.svg.png": "/static/media/Playstation_logo_colour.svg.cd1036f0e56b96ac7fad.png",
@@ -10,11 +10,11 @@
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/index.html",
     "main.c3af2218.css.map": "/static/css/main.c3af2218.css.map",
-    "main.50ceb4a4.js.map": "/static/js/main.50ceb4a4.js.map",
+    "main.0886fa32.js.map": "/static/js/main.0886fa32.js.map",
     "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c3af2218.css",
-    "static/js/main.50ceb4a4.js"
+    "static/js/main.0886fa32.js"
   ]
 }
