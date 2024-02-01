@@ -28,12 +28,15 @@ public class ProductController {
     public List<Product> getProducts() {
         return productService.getProducts();
     }
-    @GetMapping
-    public String getProductsTest() {
-        return "getProductsTest";
+    @GetMapping("/test")
+    public List<Product> getTestProducts() {
+        {
+            System.out.println("test");
+            return productService.getProducts();
+        }
     }
     @PostMapping("/")
-        public Object postProduct(@RequestBody List<Product> product) {
+        public Object postProduct(@RequestBody List<Product> product) throws Exception {
         System.out.println("product" + product);
             Object result = productService.addNewProduct(product);
             return result;
@@ -51,9 +54,10 @@ public class ProductController {
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteProduct(@PathVariable("id") Integer id) {
+    public String deleteProduct(@PathVariable("id") Integer id) {
         System.out.println("deleting product");
         productService.deleteProducts(id);
+        return "deleted id" + id;
 
     }
 

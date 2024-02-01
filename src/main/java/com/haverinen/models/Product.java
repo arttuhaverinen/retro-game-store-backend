@@ -1,6 +1,7 @@
 package com.haverinen.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.Date;
@@ -14,6 +15,7 @@ public class Product {
     private Integer Id;
 
     @Column(name="name", nullable = false)
+    @NotBlank(message = "mandatory field")
     private String name;
 
     @Column(name="description", nullable = true)
@@ -35,6 +37,7 @@ public class Product {
     private String owner;
 
     @Column(name="contact", nullable = false)
+    @NotBlank(message = "mandatory field")
     private String contact;
 
     public String getContact() {

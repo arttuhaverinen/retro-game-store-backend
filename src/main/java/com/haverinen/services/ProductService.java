@@ -44,7 +44,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Object addNewProduct(List<Product> product) {
+    public Object addNewProduct(List<Product> product) throws Exception {
+        System.out.println("adding a new product");
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String currentPrincipalName = authentication.getName();
@@ -62,14 +63,17 @@ public class ProductService {
                 System.out.println(product);
 
             }
-        } catch (Exception e) {
-            Map<String, Object> obj = new HashMap<>();
-            obj.put("product","saving failed");
-            return obj;
-        }
             Map<String, Object> obj = new HashMap<>();
             obj.put("product","saved succesfully");
             return obj;
+        }
+
+        catch (Exception e) {
+        System.out.println("failed upload");
+        //Map<String, Object> obj = new HashMap<>();
+        //obj.put("product","saving failed");
+        throw new Exception();
+        }
     }
 
     public ApplicationUser addNewUserProduct(@RequestBody ProductRequestDTO request) {
