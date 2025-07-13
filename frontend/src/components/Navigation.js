@@ -68,6 +68,19 @@ const Navigation = () => {
 										Kirjaudu ulos
 									</Link>
 								</Nav.Link>
+								<Nav.Link>
+									{" "}
+									<Link
+										style={{
+											border: "2px solid white",
+											padding: "2px",
+											borderRadius: "2px",
+										}}
+										className="links"
+									>
+										Kirjautunut käyttäjällä: {appUserName}
+									</Link>{" "}
+								</Nav.Link>
 							</>
 						) : (
 							<>
@@ -83,19 +96,6 @@ const Navigation = () => {
 								</Nav.Link>
 							</>
 						)}
-						<Nav.Link>
-							{" "}
-							<Link
-								style={{
-									border: "2px solid white",
-									padding: "2px",
-									borderRadius: "2px",
-								}}
-								className="links"
-							>
-								Kirjautunut käyttäjällä: {appUserName}
-							</Link>{" "}
-						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
