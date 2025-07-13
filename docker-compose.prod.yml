@@ -1,13 +1,13 @@
 services:
-  dev-spring-boot-app:
+  prod-spring-boot-app:
     build: .
     ports:
       - "8080:8080"
     environment:
-      db_url: ${dev_db_url}
+      db_url: ${prod_db_url}
       db_username: ${db_username}
       db_password: ${db_password}
-  dev-spring-boot-postgres:
+  prod-spring-boot-postgres:
     image: postgres:14
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -17,10 +17,10 @@ services:
       - pgdata:/var/lib/postgresql/data
     #ports:
     #  - "5432:5432"
-  dev-retrostore-frontend:
+  prod-retrostore-frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     ports:
       - "3000:3000"
 volumes:
