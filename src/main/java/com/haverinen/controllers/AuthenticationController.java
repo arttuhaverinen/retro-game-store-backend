@@ -20,10 +20,7 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
 
-    @GetMapping("/")
-    public String test() {
-        return "auth/register";
-    }
+
 
     @PostMapping("/")
     public ApplicationUser registerUser(@RequestBody RegistrationDTO body) throws Exception {

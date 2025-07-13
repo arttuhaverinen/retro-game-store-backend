@@ -28,25 +28,14 @@ public class ProductController {
     public List<Product> getProducts() {
         return productService.getProducts();
     }
-    @GetMapping("/test")
-    public List<Product> getTestProducts() {
-        {
-            System.out.println("test");
-            return productService.getProducts();
-        }
-    }
+
     @PostMapping("/")
         public Object postProduct(@RequestBody List<Product> product) throws Exception {
         System.out.println("product" + product);
             Object result = productService.addNewProduct(product);
             return result;
         }
-    @PostMapping("/userproduct")
-    public ApplicationUser postUserProduct(@RequestBody ProductRequestDTO request ) {
-        System.out.println("request" + request);
-        ApplicationUser result = productService.addNewUserProduct(request);
-        return result;
-    }
+
 
     @GetMapping("/ownproducts")
     public List<Product> getUsersProducts(){

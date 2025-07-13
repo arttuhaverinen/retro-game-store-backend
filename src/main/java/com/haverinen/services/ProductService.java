@@ -76,10 +76,7 @@ public class ProductService {
         }
     }
 
-    public ApplicationUser addNewUserProduct(@RequestBody ProductRequestDTO request) {
-        System.out.println("request" + request);
-        return userRepository.save(request.getApplicationUser());
-    }
+
 
     public void deleteProducts(Integer id) {
         productRepository.deleteById(id);
