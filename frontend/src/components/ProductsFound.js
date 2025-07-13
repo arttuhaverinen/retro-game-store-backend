@@ -10,6 +10,7 @@ import nesLogo from "./images/NES_logo.png";
 import ps1Logo from "./images/Playstation_logo_colour.svg.png";
 import sneLogo from "./images/snes.jpg";
 import n64Logo from "./images/n64.png";
+import { act } from "react";
 
 export const ProductsFound = () => {
 	let dummyResults = ["abc", "123", "asd"];
@@ -18,6 +19,10 @@ export const ProductsFound = () => {
 
 	const [products, setProducts] = useState(null);
 	const [consoleFilter, setConsoleFilter] = useState(null);
+	const [nesClicked, setNesClicked] = useState(false);
+	const [Ps1Clicked, setPs1Clicked] = useState(false);
+	const [SnesClicked, setSnesClicked] = useState(false);
+	const [n64Clicked, setN64Clicked] = useState(false);
 
 	useEffect(() => {
 		let products = fetch(baseurl + "/products/")
@@ -28,6 +33,26 @@ export const ProductsFound = () => {
 			})
 			.catch((err) => console.log(err));
 	}, []);
+
+	const handleConsoleCategory = (active) => {
+		setNesClicked(false);
+		setSnesClicked(false);
+		setPs1Clicked(false);
+		setN64Clicked(false);
+
+		if (active == "nes") {
+			setNesClicked(true);
+		}
+		if (active == "snes") {
+			setSnesClicked(true);
+		}
+		if (active == "ps1") {
+			setPs1Clicked(true);
+		}
+		if (active == "n64") {
+			setN64Clicked(true);
+		}
+	};
 
 	const sortByPrice = () => {
 		//console.log("sorting this data: ", products);
@@ -53,51 +78,93 @@ export const ProductsFound = () => {
 		<div className="div-custom-width">
 			<hr></hr>
 			<Row className="">
-				<Col className="mb-3" xs={4} md={2}>
+				<Col className="mb-3" xs={12} md={2}>
 					Hakutuloksia: {products ? products.length : null}
 				</Col>
-				<Col className="m-0 p-0 g-0" xs={4} sm={4} md={2}>
+				<Col className="mb-3" xs={6} sm={4} md={2}>
 					<button className="w-100" onClick={(e) => sortByPrice()}>
 						hintajärjestys ↑
 					</button>{" "}
 				</Col>
-				<Col className="m-0 p-0 g-0" xs={4} sm={4} md={2}>
+				<Col className="mb-3" xs={6} sm={4} md={2}>
 					<button className="w-100" onClick={(e) => sortByPriceDesc()}>
 						hintajärjestys ↓
 					</button>
 				</Col>
-				<Col className="ml-5" xs={3} md={1}>
-					<Image
-						fluid
-						className="object-fit-contain"
-						style={{ MaxWidth: "20%", height: "50px", cursor: "pointer" }}
-						src={nesLogo}
-						onClick={() => sortByConsole("NES")}
-					></Image>
-				</Col>
-				<Col xs={3} sm={3} md={1}>
-					<Image
-						className="object-fit-contain"
-						style={{ MaxWidth: "20%", height: "50px", cursor: "pointer" }}
-						src={ps1Logo}
-						onClick={() => sortByConsole("PS1")}
-					></Image>
-				</Col>
-				<Col xs={3} md={1}>
-					<Image
-						className="object-fit-contain"
-						style={{ MaxWidth: "20%", height: "50px", cursor: "pointer" }}
-						src={sneLogo}
-						onClick={() => sortByConsole("SNES")}
-					></Image>
-				</Col>
-				<Col xs={3} md={1}>
-					<Image
-						className="object-fit-contain hover-zoom"
-						style={{ MaxWidth: "20%", height: "50px", cursor: "pointer" }}
-						src={n64Logo}
-						onClick={() => sortByConsole("N64")}
-					></Image>
+
+				<Col md={4} xs={12} className="">
+					<div className=" d-none d-md-flex justify-content-center ">
+						<h5 className="text-center">Kategoriat</h5>
+					</div>
+					<div className="d-flex mx-auto justify-content-between">
+						<h6 className="d-block d-md-none text-center">Kategoriat</h6>
+						<Image
+							fluid
+							className="object-fit-contain"
+							style={{
+								MaxWidth: "20%",
+								height: "50px",
+								cursor: "pointer",
+								border: nesClicked
+									? "2px solid yellow"
+									: "2px solid transparent",
+							}}
+							src={nesLogo}
+							onClick={() => {
+								sortByConsole("nes");
+								handleConsoleCategory("nes");
+							}}
+						></Image>
+						<Image
+							className="object-fit-contain"
+							style={{
+								MaxWidth: "20%",
+								height: "50px",
+								padding: "2px",
+								cursor: "pointer",
+								border: Ps1Clicked
+									? "2px solid yellow"
+									: "2px solid transparent",
+							}}
+							src={ps1Logo}
+							onClick={() => {
+								sortByConsole("ps1");
+								handleConsoleCategory("ps1");
+							}}
+						></Image>
+						<Image
+							className="object-fit-contain"
+							style={{
+								MaxWidth: "20%",
+								height: "50px",
+								cursor: "pointer",
+								border: SnesClicked
+									? "2px solid yellow"
+									: "2px solid transparent",
+							}}
+							src={sneLogo}
+							onClick={() => {
+								sortByConsole("SNES");
+								handleConsoleCategory("snes");
+							}}
+						></Image>
+						<Image
+							className="object-fit-contain hover-zoom"
+							style={{
+								MaxWidth: "20%",
+								height: "50px",
+								cursor: "pointer",
+								border: n64Clicked
+									? "2px solid yellow"
+									: "2px solid transparent",
+							}}
+							src={n64Logo}
+							onClick={() => {
+								sortByConsole("N64");
+								handleConsoleCategory("n64");
+							}}
+						></Image>
+					</div>
 				</Col>
 			</Row>
 			<hr></hr>
