@@ -28,8 +28,6 @@ public class UserController {
     @PostMapping("/")
     public String test() {return "user access post test";}
 
-    @GetMapping("/all")
-    public List<ApplicationUser> testpost() {return userService.getUsers();}
 
 
 }
