@@ -23,6 +23,7 @@ export const ProductsFound = () => {
 	const [Ps1Clicked, setPs1Clicked] = useState(false);
 	const [SnesClicked, setSnesClicked] = useState(false);
 	const [n64Clicked, setN64Clicked] = useState(false);
+	const [filteredProductsAmount, setFilteredProductsAmount] = useState("0");
 
 	useEffect(() => {
 		let products = fetch(baseurl + "/products/")
@@ -41,17 +42,26 @@ export const ProductsFound = () => {
 		setN64Clicked(false);
 
 		if (active == "nes") {
-			setNesClicked(true);
+			setNesClicked(!nesClicked);
 		}
 		if (active == "snes") {
-			setSnesClicked(true);
+			setSnesClicked(!SnesClicked);
 		}
 		if (active == "ps1") {
-			setPs1Clicked(true);
+			setPs1Clicked(!Ps1Clicked);
 		}
 		if (active == "n64") {
-			setN64Clicked(true);
+			setN64Clicked(!n64Clicked);
 		}
+
+		let count = 0;
+		products.forEach((element) => {
+			console.log(element.console);
+			if (element.console == active.toUpperCase()) {
+				count++;
+			}
+		});
+		setFilteredProductsAmount(count.toString());
 	};
 
 	const sortByPrice = () => {
@@ -79,7 +89,12 @@ export const ProductsFound = () => {
 			<hr></hr>
 			<Row className="">
 				<Col className="mb-3" xs={12} md={2}>
-					Hakutuloksia: {products ? products.length : null}
+					{products && !consoleFilter
+						? `Hakutuloksia: ${products.length}`
+						: null}
+					{products && filteredProductsAmount && consoleFilter
+						? `Hakutuloksia: ${filteredProductsAmount.toString()}`
+						: null}
 				</Col>
 				<Col className="mb-3" xs={6} sm={4} md={2}>
 					<button className="w-100" onClick={(e) => sortByPrice()}>
