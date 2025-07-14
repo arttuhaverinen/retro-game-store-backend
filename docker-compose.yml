@@ -2,7 +2,7 @@ services:
   dev-spring-boot-app:
     build: .
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       db_url: ${dev_db_url}
       db_username: ${db_username}
