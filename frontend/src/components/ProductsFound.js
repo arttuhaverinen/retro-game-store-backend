@@ -86,7 +86,6 @@ export const ProductsFound = () => {
 
 	return (
 		<div className="div-custom-width">
-			<hr></hr>
 			<Row className="">
 				<Col className="mb-3" xs={12} md={2}>
 					{products && !consoleFilter
