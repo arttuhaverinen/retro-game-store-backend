@@ -66,7 +66,7 @@ const SingleProduct = ({
 									{owner ? <h6>{owner}</h6> : <h6>Vieras</h6>}
 								</div>
 							</Col>
-							<Col className="p-0  my-1 " xs={12} md={4}>
+							<Col className="p-0 d-flex d-md-block  my-1 " xs={12} md={4}>
 								<h6>Yhteystiedot:</h6>
 								<h6>{contact}</h6>
 							</Col>
